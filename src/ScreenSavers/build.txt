@@ -1,0 +1,8 @@
+displayName = unnamed screensaver mod
+author = flye, Darkmango
+version = 1.0
+side = Client
+
+modReferences = Daybreak@2.3.0
+
+buildIgnore = .tml-build\*, lib\*, .idea\*, .vs\*, *.tmp, Properties\*, *.csproj, *.user, obj\*, bin\*, *.config, .editorconfig, TemplateEngineHost\*

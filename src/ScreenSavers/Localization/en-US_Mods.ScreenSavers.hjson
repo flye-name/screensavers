@@ -1,0 +1,12 @@
+Configs: {
+	Config: {
+		DisplayName: Config
+
+		TimeForAFK: {
+			Label: AFK Time (in minutes)
+			Tooltip: ""
+		}
+	}
+}
+
+AuthorTags.FlyeTag.DisplayName: "[c/7483FA:flye]"
