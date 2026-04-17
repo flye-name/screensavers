@@ -11,6 +11,12 @@ namespace ScreenSavers
 {
 	public class ScreenSavers : Mod, IHasCustomAuthorMessage
 	{
+		public ScreenSavers()
+		{
+			MusicAutoloadingEnabled = false;
+			MusicSkipsVolumeRemap = true;
+		}
+		
 		string IHasCustomAuthorMessage.GetAuthorText()
 		{
 			return AuthorText.GetAuthorTooltip(this, headerText: null);
