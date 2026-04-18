@@ -6,5 +6,6 @@ public enum ScreensaverMode : byte
 	Pipe,
 	Rain,
 	Smoke,
-	WoF
+	WoF,
+    Pussy
 }

@@ -10,7 +10,7 @@ namespace ScreenSavers.Core;
 
 public class AFKUI : ModSystem
 {
-	public static ScreensaverMode Mode = ScreensaverMode.DVD;
+	public static ScreensaverMode Mode = ScreensaverMode.Pussy;
 	public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 	{
 		int index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Interface Logic 4"));
@@ -23,7 +23,10 @@ public class AFKUI : ModSystem
 				case ScreensaverMode.DVD: 
 					DVDSaver.Draw(sb); 
 					break;
-			}
+                case ScreensaverMode.Pussy:
+                    PussySaver.Draw(sb);
+                    break;
+            }
 			return true;
 		}, InterfaceScaleType.UI));
 	}
