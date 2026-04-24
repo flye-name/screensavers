@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using ScreenSavers.Common;
 using ScreenSavers.Content;
+using ScreenSavers.Content.Other;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -10,7 +11,7 @@ namespace ScreenSavers.Core;
 
 public class AFKUI : ModSystem
 {
-	public static ScreensaverMode Mode = ScreensaverMode.Pussy;
+	public static ScreensaverMode Mode = ScreensaverMode.Lagtrain;
 	public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 	{
 		int index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Interface Logic 4"));
@@ -22,6 +23,9 @@ public class AFKUI : ModSystem
 			{
 				case ScreensaverMode.DVD: 
 					DVDSaver.Draw(sb); 
+					break;
+				case ScreensaverMode.Lagtrain: 
+					LagtrainSaver.Draw(sb); 
 					break;
                 case ScreensaverMode.Pussy:
                     PussySaver.Draw(sb);
