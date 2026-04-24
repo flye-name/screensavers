@@ -35,7 +35,7 @@ public class LagtrainSaver : ILoadable
 			if (Stage > 8)
 				Stage = 1;
 		}
-		sb.Draw(TextureAssets.MagicPixel.Value, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.Gray * AFK.EffectProgress);
+		sb.Draw(TextureAssets.MagicPixel.Value, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(178, 178, 178) * AFK.EffectProgress);
 
 		Texture2D body = TextureAssets.Extra[ExtrasID.MoonLordRibs].Value;
 		Texture2D arm1 = TextureAssets.Extra[ExtrasID.MoonLordBackarm].Value;
