@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Peripherals.RGB;
 using ScreenSavers.Core;
 using System.Collections.Generic;
+using Daybreak.Common.Rendering;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics.Renderers;
@@ -14,11 +16,11 @@ namespace ScreenSavers.Content;
 
 public class PussySaver : ILoadable
 {
-    public class Cat(Vector2 pos, Vector2 vel, string tex)
+    public class Cat(Vector2 pos, Vector2 vel, int variant)
     {
         public Vector2 Vel = vel;
         public Vector2 Pos = pos;
-        public string Tex = tex;
+        public int Variant = variant;
     }
 
     public static List<Cat> Cats
@@ -29,10 +31,10 @@ public class PussySaver : ILoadable
 
     public void Load(Mod mod)
     {
-        Cats.Add(new Cat(Main.rand.NextVector2FromRectangle(new(0, 0, Main.screenWidth, Main.screenHeight)), Main.rand.NextVector2CircularEdge(1, 1) * 6, "ScreenSavers/Assets/Images/Cat_6"));
+        Cats.Add(new Cat(Main.rand.NextVector2FromRectangle(new(0, 0, Main.screenWidth, Main.screenHeight)), Main.rand.NextVector2CircularEdge(1, 1) * 6, 6));
 
         for (int k = 0; k < 299; k++)
-            Cats.Add(new Cat(Main.rand.NextVector2FromRectangle(new(0, 0, Main.screenWidth, Main.screenHeight)), Main.rand.NextVector2CircularEdge(1, 1) * 6, $"ScreenSavers/Assets/Images/Cat_{Main.rand.Next(6)}"));
+            Cats.Add(new Cat(Main.rand.NextVector2FromRectangle(new(0, 0, Main.screenWidth, Main.screenHeight)), Main.rand.NextVector2CircularEdge(1, 1) * 6, Main.rand.Next(6)));
     }
 
 	public void Unload()
@@ -50,15 +52,15 @@ public class PussySaver : ILoadable
         for (int k = 0; k < Cats.Count; k++)
         {
             var c = Cats[k];
-            Texture2D texture = ModContent.Request<Texture2D>(c.Tex).Value;
+            Texture2D texture = Assets.Images.Cat.Asset.Value;
 
-            spriteBatch.End();
+            spriteBatch.End(out var ss);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Matrix.Identity);
 
-            spriteBatch.Draw(texture, c.Pos, texture.Bounds, Color.White * AFK.EffectProgress, 0, texture.Size() * 0.5f, 2, c.Vel.X > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, c.Pos, texture.Frame(1, 6, 0, c.Variant), Color.White * AFK.EffectProgress, 0, texture.Size() * 0.5f, 2, c.Vel.X > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
 
             spriteBatch.End();
-            spriteBatch.Begin();
+            spriteBatch.Begin(in ss);
 
             c.Pos += c.Vel;
 
